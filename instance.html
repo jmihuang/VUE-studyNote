@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- $amount掛載 -->
+        <!-- tamplate模板 -->
+        <input type="number" v-model="num">+
+        <input type="number" v-model="num2">=
+        <input type="number" v-model="total">
+        <button @click="add">add</button>
+        <br>
+        <input type="number" v-model="num">-
+        <input type="number" v-model="num2">=
+        <input type="number" v-model="minus">
+    </div>
+
+    <script>
+        // 可外部定義data帶入
+        const data = {
+            message: 'hello',
+            num: 0,
+            num2: 2
+        }
+        const vm = new Vue({
+            el: '#app',
+            //使用tamplate的寫法 置換內容
+            // template: '<h2 style="color:red">{{message}}<h2>',
+            data,
+            // methods
+            methods: {
+                add() {
+                    this.num += 1;
+                }
+            },
+            //computed 計算屬性 需有return
+            computed: {
+                //一般寫法
+                // total() {
+                //     return this.num + this.num2;
+                // }
+                //進階的物件寫法
+                total: {
+                    get() {
+                        return parseInt(this.num) + parseInt(this.num2);
+                    },
+                    //寫入total,回塞num2值
+                    set(val) {
+                        parseInt(this.num2) = parseInt(val - this.num);
+                    }
+                },
+                minus() {
+                    return parseInt(this.num) - parseInt(this.num2);
+                }
+            },
+            //watch 主要是偵聽data computed instance命名必須相同
+            watch: {
+                total(val, oldVal) {
+                    // console.log(val + ',' + oldVal);
+                },
+                //進階的物件寫法 
+                minus: {
+                    handler(val, oldVal) {
+                        console.log(val + ',' + oldVal);
+                    },
+                    //immediate初始化即跑結果 deep:true可滲透偵測obj,obj值改變但val＝oldVal為相同
+                    immediate: true
+                }
+
+
+            }
+        });
+
+        console.log(vm.message);
+        vm.message = 'aloha';//重置寫過
+        console.log(vm.message);
+    </script>
+</body>
+
+</html>

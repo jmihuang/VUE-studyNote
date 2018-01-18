@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{message}} {{count}}
+        <!-- v-on -->
+        <button v-on:click="add">+1</button>
+        <!-- v-if v-else -->
+        <span v-if="show">you can see me</span>
+        <span v-else>hey,see me</span>
+        <!-- v-for -->
+        <ul>
+            <li v-for="fruit in fruits">{{fruit}}</li>
+        </ul>
+        <button v-on:click="remove">remove List</button>
+        <!-- v-model -->
+        <input type="text" v-model="text"> {{text}}
+        <!-- v-once 只印出一次-->
+        <span v-once>{{onece}}</span>
+        <span>{{onece}}</span>
+        <button v-on:click="addSymbol">click</button>
+        <!-- v-html 印出html-->
+        <span v-html="greeting"></span>
+        <!-- v-bind-->
+        <input type="checkbox" v-bind:checked="checked">
+        <button v-on:click="toggle">Toggle</button>
+        <!-- v-bind 直接塞入表達式-->
+        <input type="checkbox" v-bind:checked="(count%2==0)"> {{count*2}}
+        <!-- v-bind v-on縮寫-->
+        <input type="checkbox" :checked="(count%2==0)">
+        <button @click="dosomething">Toggle</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hello',
+                count: 0,
+                show: false,
+                fruits: [
+                    'kiwi',
+                    'apple',
+                    'banana'
+                ],
+                text: '',
+                onece: 'hello',
+                greeting: '<span style="color:red">ALOHA</span>',
+                checked: true
+            },
+            methods: {
+                add() {
+                    this.count += 1;
+                },
+                remove() {
+                    this.fruits.pop();
+                },
+                addSymbol() {
+                    this.onece += '!';
+                },
+                toggle() {
+                    this.checked = !this.checked;
+                },
+                dosomething() {
+                    this.checked = !this.checked;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
