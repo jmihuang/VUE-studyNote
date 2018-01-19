@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+<style>
+    .submit {
+        border-radius: 15%;
+        background-color: aquamarine;
+    }
+
+    .submit.disable {
+        background-color: #eee;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="text">
+        <button :class="cssBtn">submit</button>
+        <button :class="cssBtns">submit</button>
+    </div>
+    <script>
+        //寫入class方法 "字串" “computed物件” “陣列”
+        new Vue({
+            el: "#app",
+            data: {
+                text: "",
+                cssBtns: ['submit', 'disable']
+            },
+            computed: {
+                cssBtn() {
+                    return {
+                        //computed物件
+                        submit: true,
+                        disable: this.text.length === 0
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
