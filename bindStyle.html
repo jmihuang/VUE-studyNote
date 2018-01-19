@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <h1 :style="styleList">Chance a goal in front of you!</h1>
+        <h2 :style="styleArray">Chance a goal in front of you!</h2>
+        <h3 :style="smaller">SMALLER</h3>
+        <button @click="shirking">click1</button>
+        <button @click="goSmaller">click2</button>
+    </div>
+    <script>
+        //寫入style方法 "字串" “陣列” “”
+        new Vue({
+            el: "#app",
+            data: {
+                //字串的寫法
+                //styleList: "font-size:36px;color:red",
+                //物件的寫法
+                size: 24,
+                styleList: {
+                    fontSize: "36px",
+                    color: "red"
+                },
+                //陣列寫法 !! 陣列內需包物件且是駱駝式
+                styleArray: [
+                    {
+                        fontSize: "16px",
+                        color: "blue"
+                    },
+                    {
+                        backgroundColor: "#eee",
+                        textDecoration: "underline"
+                    }
+                ]
+            },
+            methods: {
+                //把字大小-1
+                shirking() {
+                    let size = parseInt(this.styleArray[0].fontSize.replace('px', ''), 10);
+                    this.styleArray[0].fontSize = `${size - 1}px`
+                },
+                goSmaller() {
+                    this.size--;
+                }
+            },
+            computed: {
+                smaller() {
+                    return {
+                        fontSize: `${this.size}px`,
+                        Color: "pink"
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
