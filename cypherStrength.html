@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+<style>
+    .block {
+        width: 200px;
+        margin-top: 3px;
+        border: 1px solid #999
+    }
+
+    .strength {
+        height: 10px;
+        margin: 3px;
+        background-color: red;
+        transition: all .25s;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="password">
+        <div class="block">
+            <div class="strength" v-bind:style="{ backgroundColor: colorVal, width: widthVal }"></div>
+        </div>
+        <b>密碼強度：{{text}}</b>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                password: "",
+                width: "20",
+                error: "",
+            },
+            computed: {
+                strength() {
+                    let score = this.password.length;
+                    let reqex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,25})/;
+                    if (reqex.test(this.password)) {
+                        this.error = "";
+                        if (score < 10) return 10;
+                        if (score >= 10 && score < 15) return 60;
+                        if (score >= 15 && score < 25) return 80;
+                        if (score >= 25) return 100;
+                    } else {
+                        this.error = "最少一個數字，最少一個小階英文，最少一個大階英文，長度限制為10-25";
+                    };
+                },
+                text() {
+                    if (this.strength == 60) return '弱';
+                    if (this.strength == 80) return '中';
+                    if (this.strength == 100) return '強';
+                },
+                colorVal() {
+                    if (this.strength == 60) return 'orange';
+                    if (this.strength == 80) return 'blue';
+                    if (this.strength == 100) return 'green';
+                },
+                widthVal() {
+                    let width = this.strength ? this.strength + '%' : 10 + '%';
+                    return width;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
