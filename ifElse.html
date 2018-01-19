@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <div>
+            <p>只顯示其中一項：</p>
+            <input type="checkbox" v-model="name">商品說明
+            <input type="checkbox" v-model="price">商品價格
+        </div>
+        <div>
+            <!-- v-if直接把元件從檔案刪除 -->
+            <p v-if="name">商品名稱：大大小小姐</p>
+            <!-- v-if沒打勾 v-else-if打勾時出現 -->
+            <p v-else-if="price">商品價格：$259</p>
+            <!-- v-if v-else-if都沒打勾時出現 -->
+            <p v-else="desc">商品說明：小寶出現～大寶備受威脅</p>
+        </div>
+        <input type="checkbox" v-model="checked">點一下可顯示下面文字
+        <div>
+            <p v-show="checked">這是v-show顯示內容</p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                name: false,
+                price: false,
+                desc: false,
+                checked: false
+            }
+        });
+
+    </script>
+</body>
+
+</html>
