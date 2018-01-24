@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <h2>陣列的方法</h2>
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+        <button @click="additem">push推一個元件至陣列後面</button>
+        <br>
+        <button @click="removeitem">pop刪除陣列最後一個元件</button>
+        <br>
+        <button @click="removeFirstItem">shift刪除陣列第一個元件</button>
+        <br>
+        <button @click="addZeroItem">unshift新增一個元件(zero)至陣列前面</button>
+        <br>
+        <button @click="addItemfrom2">splice在排序2後新增兩個元素</button>
+        <br>
+        <button @click="remove1itemform2">splice在排序2後移除1個元素</button>
+        <br>
+        <button @click="sortlist">sort從小到大排序</button>
+        <br>
+        <button @click="reverse">reverse反轉</button>
+        <br>
+        <button @click="filter">filter取出偶數</button>
+        <br>
+        <button @click="changeval">改變陣列中的第一個元素</button>
+        <br>
+        <button @click="removeallitem1">splice去除第三個元素後所有元素</button>
+        <br>
+        <button @click="removeallitem2">slice去除第三個元素後所有元素</button>
+        <h2>物件的方法</h2>
+        <ul>
+            <li v-for="(item,key) in obj">{{key}}{{item}}</li>
+        </ul>
+        <button @click="addzobj">$set新增z到物件</button>
+        <button @click="changexval">重新更新x得值</button>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                arr: [
+                    3,
+                    16,
+                    6,
+                    9,
+                    1
+                ],
+                obj: {
+                    x: 134,
+                    y: 3999
+                }
+            },
+            methods: {
+                //push - 推一個元件至陣列後面
+                additem() {
+                    this.arr.push(this.arr.length + 1);
+                },
+                removeitem() {
+                    //pop - 刪除陣列最後一個元件
+                    this.arr.pop(this.arr.length);
+                },
+                removeFirstItem() {
+                    //shift - 刪除陣列第一個元件
+                    this.arr.shift();
+                },
+                //unshift - 新增一個元件至陣列前面
+                addZeroItem() {
+                    this.arr.unshift('zero');
+                },
+                //splice - 指定index,刪除數量,index“前”塞入的元素
+                addItemfrom2() {
+                    this.arr.splice(2, 0, "newitem", "newitem2");
+                },
+                remove1itemform2() {
+                    this.arr.splice(1, 1);
+                },
+                //排序
+                sortlist() {
+                    this.arr.sort(function (a, b) { return a - b });
+                },
+                //反轉
+                reverse() {
+                    this.arr.reverse();
+                },
+                filter() {
+                    this.arr = this.arr.filter(el => (el % 2 == 0));
+                },
+                changeval() {
+                    // this.arr[0] = "三"; 無法做用
+                    //需用splice
+                    this.arr.splice(0, 1, '三');
+                },
+                removeallitem1() {
+                    this.arr.splice(3);
+                },
+                removeallitem2() {
+                    //slice(保留的第一個元素位置,保留的結束元素位置);
+                    this.arr = this.arr.slice(0, 3);
+                },
+                addzobj() {
+                    //this.obj.z = "jiii" 部會有作用
+                    //使用$set('物件名稱','key','value');
+                    this.$set(this.obj, 'z', 'jiii');
+                    //亦可用Vue.set(this.obj, 'z', 'jiii');
+                },
+                changexval() {
+                    this.obj.x = 'changed!!';
+                }
+
+            }
+        });
+
+    </script>
+</body>
+
+</html>
