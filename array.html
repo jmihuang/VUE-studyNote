@@ -15,6 +15,9 @@
         <ul>
             <li v-for="(item,index) in toDoList">{{"筆數"+index+item}}</li>
         </ul>
+        <select>
+            <option v-for="item in dueDate" :value="item.prop">{{item.todo}}</option>
+        </select>
     </div>
     <script>
         new Vue({
@@ -25,6 +28,13 @@
                     'Bootstrap4',
                     'SVG',
                     'UI'
+                ],
+                //採用陣列物件 確保順序與data資料依樣
+                dueDate: [
+                    { prop: '2017/10/3', todo: 'Vue2' },
+                    { prop: '2017/7/3', todo: 'Bootstrap4' },
+                    { prop: '2017/11/16', todo: 'SVG' },
+                    { prop: '2016/5/15', todo: 'UI' },
                 ]
             }
         });
