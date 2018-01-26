@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in items">{{item}}</li>
+        </ul>
+        <button @click="reverse()">reverse</button>
+        <ul>
+            <li v-for="item in newnum">{{item }}</li>
+        </ul>
+        <button @click="even()">even</button>
+        <button @click="backval()">backval</button>
+        <button @click="sort()">sort</button>
+    </div>
+    <script>
+        var nums = [2, 3, 0, 233, 13];
+        new Vue({
+            el: "#app",
+            data: {
+                items: [
+                    3,
+                    16,
+                    6,
+                    9,
+                    1
+                ],
+                newnum: nums
+            },
+            methods: {
+                reverse() {
+                    this.items.reverse();
+                },
+                backval() {
+                    this.newnum = nums;
+                },
+                even() {
+                    this.newnum = nums.filter(val => val % 2 === 0);
+                },
+                sort() {
+                    //當走入sort函示 原本nums陣列資料就會被更動
+                    //this.newsm = nums.sort();（X）值已被改變
+                    //保留nums陣列 slice()複製一份再更動 就不會改掉原本ㄉ
+                    this.newnum = nums.slice().sort();
+                    console.log(nums.slice().sort());
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
