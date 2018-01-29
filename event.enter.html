@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    .img.hide {
+        opacity: 0;
+        transform: scale(10) rotate(180deg);
+    }
+
+    img {
+        transition: all .25s;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <input v-model="input" type="text" @keydown="pushList">
+        <h4>History:</h4>
+        <ul>
+            <li v-for="list in lists">{{list}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                input: '',
+                lists: []
+            },
+            methods: {
+                pushList(evt) {
+                    if (evt.keyCode == 13) {
+                        this.lists.push(this.input);
+                        this.input = "";
+                    }
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
