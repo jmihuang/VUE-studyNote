@@ -1,0 +1,62 @@
+{
+	"1": {
+		"title": "政府標案",
+		"href": "simple/demo1/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-03.jpg",
+		"skill": "Photoshop/Flash"
+	},
+	"2": {
+		"title": "政府標案",
+		"href": "simple/demo22/main.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-04.jpg",
+		"skill": "Photoshop"
+	},
+	"3": {
+		"title": "政府標案-APP DEMO",
+		"href": "simple/demo47/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-52.jpg",
+		"skill": "Photoshop"
+	},
+	"4": {
+		"title": "政府標案",
+		"href": "simple/demo49/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-53.jpg",
+		"skill": "Photoshop"
+	},
+	"5": {
+		"title": "政府標案",
+		"href": "simple/demo23/main.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-02.jpg",
+		"skill": "Photoshop"
+	},
+	"6": {
+		"title": "政府標案",
+		"href": "simple/demo3/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-05.jpg",
+		"skill": "Photoshop"
+	},
+	"7": {
+		"title": "政府標案",
+		"href": "simple/demo4/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-06.jpg",
+		"skill": "Photoshop"
+	},
+	"8": {
+		"title": "政府標案",
+		"href": "simple/demo5/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-08.jpg",
+		"skill": "Photoshop/Html/Facebook"
+	},
+	"9": {
+		"title": "政府標案",
+		"href": "simple/demo6/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-09.jpg",
+		"skill": "Photoshop/Flash"
+	},
+	"10": {
+		"title": "設計平台吉祥物宣導",
+		"href": "simple/demo8/index.html",
+		"img": "https://jmihuang.github.io/jmiworkspace/dist/images/2013WORKS_03-10.jpg",
+		"skill": "Photoshop/Jquery/html"
+	}
+}

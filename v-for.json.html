@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        position: relative;
+        width: calc(25% - 40px);
+        padding: 210px 10px 10px 10px;
+        margin: 20px;
+        display: inline-block;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    li+li:not(:nth-child(3+1)) {
+        margin-left: 1rem;
+    }
+
+    .img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 200px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    h5 {
+        color: #369
+    }
+</style>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="site in sites">
+                <a :href="site.href">
+                    <div class="img" :style="imgStyle(site.img)"></div>
+                </a>
+                <h5>{{site.title}}</h5>
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                sites: []
+            },
+            mounted() {
+                fetch('sites.json', { method: 'get' })
+                    .then(
+                    //處理 response
+                    response => response.json()
+                    )
+                    //將json資料寫進data
+                    .then(sites => this.sites = sites)
+            },
+            methods: {
+                imgStyle(imgurl) {
+                    return {
+                        backgroundImage: `url(${imgurl})`
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
