@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    .img.hide {
+        opacity: 0;
+        transform: scale(10) rotate(180deg);
+    }
+
+    img {
+        transition: all .25s;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <h4 v-if="loaded">Compelte</h4>
+        <h4 v-else>Loading</h4>
+        <img :class="loadImg" @load="loaded=true" src="https://picsum.photos/1200/800/?random">
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                loaded: false
+            },
+            computed: {
+                loadImg() {
+                    if (this.loaded) {
+                        return 'img';
+                    } else {
+                        return 'img hide';
+                    }
+
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
