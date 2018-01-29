@@ -62,7 +62,7 @@
         <ul>
             <li v-for="site in sites">
                 <a :href="site.href">
-                    <div class="img" :style="imgStyle(site.img)"></div>
+                    <div class="img" :style="{backgroundImage:`url(${site.img})`}"></div>
                 </a>
                 <h5>{{site.title}}</h5>
             </li>
