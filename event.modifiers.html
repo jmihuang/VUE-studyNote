@@ -21,22 +21,30 @@
 
 <body>
     <div id="app">
-        <div class="box">
-            <div class="box">
-                <div class="box"></div>
+        <div class="box" @click="clickArea='C'">
+            <div class="box" @click="clickArea='B'">
+                <div class="box" @click="clickit"></div>
             </div>
         </div>
+        <p>Area: {{clickArea}}
+        </p>
         <a href="http://www.yahoo.com.tw" target="_blank" @click.prevent="linkClick">LINKS</a>
     </div>
     <script>
         new Vue({
             el: "#app",
             data: {
-
+                clickArea: ''
             },
             methods: {
                 linkClick(evt) {
                     console.log('click');
+                },
+                clickit(evt) {
+                    //stopPropagation防止parent物件干擾內容物的點擊
+                    evt.stopPropagation();
+                    console.log('clickit');
+                    this.clickArea = "A";
                 }
             }
 
