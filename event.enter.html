@@ -22,7 +22,7 @@
 
 <body>
     <div id="app">
-        <input v-model="input" type="text" @keydown="pushList">
+        <input v-model="input" type="text" @keydown.enter="pushList">
         <h4>History:</h4>
         <ul>
             <li v-for="list in lists">{{list}}</li>
@@ -37,10 +37,8 @@
             },
             methods: {
                 pushList(evt) {
-                    if (evt.keyCode == 13) {
-                        this.lists.push(this.input);
-                        this.input = "";
-                    }
+                    this.lists.push(this.input);
+                    this.input = "";
                 }
             }
 
