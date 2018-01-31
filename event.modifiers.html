@@ -21,20 +21,32 @@
 
 <body>
     <div id="app">
+        <!-- @click.stop event.progation的修飾符 -->
         <div class="box" @click.stop="clickArea='C'">
             <div class="box" @click.stop="clickArea='B'">
                 <div class="box" @click.stop="clickArea='A'"></div>
             </div>
         </div>
+        <!-- @click.self 指定自己的修飾符等同於stop修飾符 -->
+        <div class="box" @click.self="clickArea='C'">
+            <div class="box" @click.self="clickArea='B'">
+                <div class="box" @click.self="clickArea='A'"></div>
+            </div>
+        </div>
         <p>Area: {{clickArea}}
         </p>
+        <!-- @click.prevent event.prevent的修飾符 -->
         <a href="http://www.yahoo.com.tw" target="_blank" @click.prevent="linkClick">LINKS</a>
+        <span>{{count}}</span>
+        <!-- @click.once 只作用一次的修飾符 -->
+        <button @click.once="count+=1">+1</button>
     </div>
     <script>
         new Vue({
             el: "#app",
             data: {
-                clickArea: ''
+                clickArea: '',
+                count: 0
             },
             methods: {
                 linkClick(evt) {
