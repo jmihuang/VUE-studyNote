@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    .message {
+        white-space: pre;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="imessage"> -->
+        <input type="text" :value="imessage" @input="setMessage">
+        <p>{{imessage}}</p>
+        <textarea cols="30" rows="10" v-model="comments"></textarea>
+        <pre>{{comments}}</pre>
+        <p class="message">{{comments}}</p>
+
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                'imessage': '',
+                'comments': ''
+            },
+            methods: {
+                setMessage(evt) {
+                    this.imessage = evt.target.value;
+                }
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
