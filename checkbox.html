@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    .message {
+        white-space: pre;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <input type="checkbox" id="chk" v-model="agree">
+        <label for="chk">agree</label>
+        <button @click="submit">button</button>
+        {{agree}}
+        <h3>hobbies</h3>
+        <input type="checkbox" id="hiking" value="hiking" v-model="hobby">
+        <label for="hiking">hiking</label>
+        <input type="checkbox" id="shopping" value="shopping" v-model="hobby">
+        <label for="shopping">shopping</label>
+        <input type="checkbox" id="swimming" value="swimming" v-model="hobby">
+        <label for="swimming">swimming</label>
+        <p>{{hobby}}</p>
+
+    </div>
+    <script>    
+        new Vue({
+            el: "#app",
+            data: {
+                "agree": false,
+                "hobby": []
+            },
+            methods: {
+                submit() {
+                    if (!this.agree) {
+                        alert('pls check agree');
+                        return;
+                    }
+                    //已勾選後進行下一個階段
+                    console.log('submit next step');
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
