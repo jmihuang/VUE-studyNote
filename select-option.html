@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    .message {
+        white-space: pre;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <select v-model="year">
+            <option disabled value="">Please select year</option>
+            <option value="2015">2015</option>
+            <option value="2016" value="2016">2016</option>
+            <option value="2017" value="2017">2017</option>
+        </select>
+        <p>{{year}}</p>
+
+        <!-- 多選的選擇 -->
+        <select v-model="years" multiple>
+            <option value="2015">2015</option>
+            <option value="2016" value="2016">2016</option>
+            <option value="2017" value="2017">2017</option>
+        </select>
+        <p>{{years}}</p>
+
+        <!-- data資料寫入值 -->
+        <select v-model="selectedMonth">
+            <option v-for="month in months" :value="month">{{month}}</option>
+        </select>
+        <p>選擇的月份：{{selectedMonth}}</p>
+
+        <!-- data object資料寫入值 -->
+        <select v-model="selectGender">
+            <option v-for="gender in genders" :value="gender.value">{{gender.text}}</option>
+        </select>
+        <p>選擇的性別：{{selectGender}}</p>
+
+    </div>
+    <script>    
+        new Vue({
+            el: "#app",
+            data: {
+                year: '',
+                years: [],
+                months: ['Jan', 'Feb', 'March', 'April', 'May'],
+                selectedMonth: 'Feb',
+                genders: [{
+                    value: '1', text: 'male'
+                }, {
+                    value: '2', text: 'female'
+                }, {
+                    value: '3', text: 'other'
+                }],
+                selectGender: 1
+            }
+        });
+
+    </script>
+</body>
+
+</html>
