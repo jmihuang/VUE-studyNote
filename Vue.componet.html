@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    label {
+        display: block
+    }
+</style>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <silde-nav></silde-nav>
+    </div>
+    <div id="app2">
+        <my-component></my-component>
+        <silde-nav></silde-nav>
+    </div>
+    <script>    
+        //Global componet 
+        Vue.component('my-component', {
+            template: '<div>Global componet</div>'
+        })
+
+        new Vue({
+            el: "#app",
+            //local componet
+            components: {
+                'silde-nav': {
+                    template: '<div>A custom component!</div>'
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app2"
+        });
+
+    </script>
+</body>
+
+</html>
