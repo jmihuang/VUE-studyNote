@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    img {
+        max-width: 300px;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <!-- input:file無法使用v-model -->
+        <input type="file" @change="fileSelected">
+        <img v-if="imgSrc" :src="imgSrc">
+        <button @click="upload">upload</button>
+    </div>
+    <script>    
+        new Vue({
+            el: "#app",
+            data: {
+                imgSrc: "",
+                file: null
+            },
+            methods: {
+                //圖片預覽
+                fileSelected(evt) {
+                    var input = evt.target;
+                    var reader = new FileReader();
+                    reader.onload = () => {
+                        var dataURL = reader.result;
+                        this.imgSrc = dataURL;
+                    };
+                    //base64編碼 意指可以把一切路徑文字改成可讀取的編碼
+                    reader.readAsDataURL(input.files[0]);
+                },
+                upload() {
+                    //依照後端要求寫法會有所不同
+                    const format = new FormData();
+                    format.append(this.file, file.name);
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
