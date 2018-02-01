@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+    label {
+        display: block
+    }
+</style>
+
+<body>
+    <div id="app">
+        <label>幼兒園名稱
+            <input type="text">
+        </label> 
+        <label>電話
+            <input type="numbe">
+        </label>
+        <label>班別
+            <select v-model="classSeleted">
+                <option value="" selected disabled>請選擇</option>
+                <option v-for="item in classes" :value="item">{{item}}</option>
+            </select>
+        </label>
+        <label>上傳圖檔
+            <input type="file" @change="uploadFile">
+            <img v-if="imgSrc" :src="imgSrc">
+        </label>
+    </div>
+    <script>    
+        new Vue({
+            el: "#app",
+            data: {
+                name: '',
+                tel: '',
+                classSeleted: '',
+                classes: ['幼幼班', '小班', '中班', '大班'],
+                imgSrc: ''
+            },
+            methods: {
+                uploadFile(evt) {
+                    const input = evt.target;
+                    const reader = new FileReader();
+                    const dataUrl = input.files[0];
+                    reader.onload = () => {
+                        this.imgSrc = reader.result;
+                    }
+                    reader.readAsDataURL(dataUrl);
+                }
+            }
+
+        });
+        Vue.config.devtools = true
+
+    </script>
+</body>
+
+</html>
