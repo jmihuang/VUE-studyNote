@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <todo-list></todo-list>
+    </div>
+    <script> 
+        Vue.component('todo-list', {
+            data() {
+                return {
+                    todolists: [
+                        'receive a procharl',
+                        'throw the trash',
+                        'send mail to Joy'
+                    ]
+                }
+            },
+            methods: {
+                addList(text) {
+                    this.todolists.unshift(text);
+                }
+            },
+            //接收從組件發送的input事件時 執行addList()
+            template: `
+                <div>
+                    <todo-input @input="addList"></todo-input>  
+                    <todo-item v-for="todolist in todolists" :label="todolist"></todo-item>           
+                </div>
+            `
+        })
+
+        Vue.component('todo-input', {
+            data() {
+                return {
+                    text: ''
+                }
+            },
+            methods: {
+                submit() {
+                    //從組件出input事件
+                    this.$emit('input', this.text);
+                    this.text = "";
+                }
+            },
+            template: `
+              <form @submit.prevent="submit">
+                <input type="text" v-model="text">
+                <button>送出</button>
+              </form>   
+            `
+
+        });
+
+        Vue.component('todo-item', {
+            //使用：label傳遞資料內容
+            props: ['label'],
+            template: `
+                <li>{{label}}</li>
+            `
+        });
+
+        new Vue({
+            el: "#app"
+        });
+    </script>
+</body>
+
+
+</html>
