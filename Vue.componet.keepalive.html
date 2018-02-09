@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+<style>
+</style>
+
+<body>
+    <div id="app">
+        <button @click="content = 'tab1'">tab1</button>
+        <button @click="content = 'tab2'">tab2</button>
+        <hr>
+        <keep-alive>
+            <component :is="content"></component>
+        </keep-alive>
+    </div>
+    <script> 
+        Vue.component('tab1', {
+            data() {
+                return {
+                    todolists: [
+                        'receive a procharl',
+                        'throw the trash',
+                        'send mail to Joy'
+                    ]
+                }
+            },
+            template:
+                `
+            <ul>
+                <li v-for="todolist in todolists">{{todolist}}</li>
+            </ul> 
+            `
+        })
+
+        Vue.component('tab2', {
+            data() {
+                return {
+                    area: ''
+                }
+            },
+            template:
+                `
+             <textarea v-model="this.area">
+             </textarea> 
+            `
+        })
+
+
+        new Vue({
+            el: "#app",
+            data: {
+                content: 'tab2'
+            }
+        });
+    </script>
+</body>
+
+
+</html>

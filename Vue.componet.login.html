@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.min.js"></script>
+</head>
+
+<style>
+    body {
+        background-color: black;
+    }
+
+    h3 {
+        color: #fff;
+    }
+
+    .login_page input[type=text],
+    .login_page input[type=password],
+    textarea {
+        font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+        letter-spacing: 2px;
+        background: #f2f2f2;
+        outline: solid 2px #fff;
+        width: 100%;
+        border: 0;
+        margin: 0 0 15px;
+        padding: 15px 15px 15px 30px;
+        box-sizing: border-box;
+        font-size: 14px;
+        transition-property: all;
+        transition-duration: 0.3s;
+    }
+
+    .login_page input[type=text]:focus,
+    .login_page input[type=password]:focus {
+
+        outline: solid 2px #c5cc16;
+    }
+
+    .login_page input[type=text]:disabled,
+    .login_page input[type=password]:disabled {
+        background-color: #333;
+    }
+
+    .login_page {
+        width: 360px;
+        padding: 15px;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .login_btn {
+        background: #c5cc16;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: none;
+        color: #fff;
+        border: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .error {
+        font-size: 10px;
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="app">
+
+        <login-box></login-box>
+    </div>
+    <script> 
+        const Apiurl = "http://localhost:3000";
+        Vue.component('login-box', {
+            data() {
+                return {
+                    username: '',
+                    password: '',
+                    error: '',
+                    loggedUser: null,
+                    loading: false
+                }
+            },
+            watch: {
+                username() {
+                    this.error = '';
+                    this.submitDebounced();
+                },
+                password() {
+                    this.error = '';
+                }
+            },
+            created() {
+                //利用debounce函式庫 讀取僅一次的delay讀取 (執行的函式,延遲執行的時間)
+                this.submitDebounced = _.debounce(this.checkname, 500);
+            },
+            methods: {
+                checkname() {
+                    /* 送出GET */
+                    axios.get(`${Apiurl}/member?user=${this.username}`)
+                        .then((response) => {
+                            this.loading = false;
+                            if (!response.data.length == 0) {
+                                this.error = "帳號已有人使用";
+                                return;
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                },
+                submit() {
+                    this.loading = true;
+                    /* 送出GET */
+                    axios.get(`${Apiurl}/member?user=${this.username}&password=${this.password}`)
+                        .then((response) => {
+                            this.loading = false;
+                            if (response.data.length == 0) {
+                                this.error = "帳號不存在，或密碼錯誤";
+                                return;
+                            }
+                            this.loggedUser = response.data[0].user;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            },
+            template: `
+            <div>
+                <h3 v-if="loggedUser">welcome!{{loggedUser}}</h3>
+                <form v-else class="login_page" @submit.prevent="submit">
+                    <input type="text" v-model="username" placeholder="帳號" value="" :disabled="loading"/>
+                    <input type="password" v-model="password" placeholder="密碼(8-12英數)" :disabled="loading"/>
+                    <button class="login_btn" type="submit" :disabled="loading">送出表單</button>
+                    <p class="error" v-if="error">{{error}}</p>
+                </form>
+            </div>
+            `
+        });
+
+
+        new Vue({
+            el: "#app",
+        });
+    </script>
+</body>
+
+
+</html>

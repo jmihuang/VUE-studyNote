@@ -5,13 +5,13 @@
 - [Todo List](https://jmihuang.github.io/VUE-studyNote/toDoList.html)
 
 ## Vue instance實例
-創建 Vue 實例
-元素 (el) 、掛載 ($mount)、模板 (template)
-狀態 (data)
-方法 (methods)
-計算屬性 (computed)
-偵聽器 (watch)
-生命週期 
+> 元素 (el) 、掛載 ($mount)、模板 (template)
+> 狀態 (data)
+> 方法 (methods)
+> 計算屬性 (computed)
+> 偵聽器 (watch)
+> 生命週期 
+
 - [實例](https://jmihuang.github.io/VUE-studyNote/cypherStrength.html)
 - [密碼強度](https://jmihuang.github.io/VUE-studyNote/cypherStrength.html)
 
@@ -45,7 +45,14 @@
 - [input的修飾符](https://jmihuang.github.io/VUE-studyNote/input.modifiers.html)
 
 ## Vue componet 組件
+可容許的命名規則 my first componet
+> 'my-first-componet' //kabab-case !!html只能用這個!!
+> 'myFirstComponet' //camel-case
+> 'MyFirstComponet' //pascal-case
+
 - [global/local componet組件用法](https://jmihuang.github.io/VUE-studyNote/Vue.componet.html)
 - [Vue 組件的寫法](https://jmihuang.github.io/VUE-studyNote/Vue.componet.data.html)
 - [合體！組件組合！](https://jmihuang.github.io/VUE-studyNote/Vue.componet.group.html)
 - [切換不同組件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.switch.html)
+- [切換時保留組件輸入值](https://jmihuang.github.io/VUE-studyNote/Vue.componet.keepalive.html)
+- [利用組建寫一個登入功能](https://jmihuang.github.io/VUE-studyNote/Vue.componet.login.html)
