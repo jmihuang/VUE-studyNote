@@ -56,3 +56,7 @@
 - [切換不同組件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.switch.html)
 - [切換時保留組件輸入值](https://jmihuang.github.io/VUE-studyNote/Vue.componet.keepalive.html)
 - [利用組建寫一個登入功能](https://jmihuang.github.io/VUE-studyNote/Vue.componet.login.html)
+- [實作：登入功能](https://jmihuang.github.io/VUE-studyNote/Vue.componet.login.html)
+
+## Javascript基礎觀
+- [觀念：callback fn 取得ajax不同步資料](https://jmihuang.github.io/VUE-studyNote/ajax.promise.html)
