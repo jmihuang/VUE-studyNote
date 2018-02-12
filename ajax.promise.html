@@ -13,21 +13,26 @@
 <body>
     <script>
         console.clear();
-        function getName(callback) {
-            let name;
-            axios.get('https://reqres.in/api/users?page=2')
+        function getName(url, callback) {
+            axios.get(url)
                 .then(function (rs) {
                     //callback
                     callback(rs.data.data[0].first_name);
                 });
         }
-        //必須使用callback function 取得值
-        let get_name;
-        getName(function (name) {
-            get_name = name;
-            console.log(get_name);
-        });
+        //取得第一個值後再取第二個值再取第三個值 會呈現巢鳳式function 稱為callback hell
+        let names = [];
+        getName('https://reqres.in/api/users?page=1', function (name) {
+            names.push(name);
+            getName('https://reqres.in/api/users?page=2', function (name) {
+                names.push(name);
+                getName('https://reqres.in/api/users?page=3', function (name) {
+                    names.push(name);
+                    console.log(names);
+                });
+            });
 
+        });
     </script>
 </body>
 
