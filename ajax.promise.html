@@ -13,17 +13,74 @@
 <body>
     <script>
         console.clear();
-        function getName(callback) {
+        //使用callback呼叫不同步fn
+        function getFirstName() {
             axios.get('https://reqres.in/api/users?page=1')
                 .then(function (rs) {
-                    callback(rs.data.data[0].first_name);
+                    console.log(rs);
                 });
         }
 
-        //不同步採callback取值
-        getName(function (name) {
+
+        //使用promise建構函示解決不同步取值
+        let name = [];
+        let promise = new Promise(function (resolve, reject) {
+            axios.get('https://reqres.in/api/users?page=1')
+                .then(function (rs) {
+                    //callback成功呼叫resolve;
+                    resolve(rs);
+                    //不成功callback成功呼叫reject;
+                    reject("failure reason");
+                });
+        });
+
+        //promise 取得第一個值後在執行後面的function
+        promise.then((rs) => {
+            name.push(rs.data.data[0].first_name);
+            return rs;//將值指派給下個用
+        }).then((rs) => {
+            name.push(rs.data.data[1].first_name);
+            return rs;
+        }).then((rs) => {
+            name.push(rs.data.data[2].first_name);
             console.log(name);
         });
+
+
+        //先定义一个返回Promise对象的Ajax过程
+        //參考：http://borninsummer.com/2015/06/02/using-promise-to-carry-out-multi-ajax-procedure/
+
+        var getAjaxPromise = function (option) {
+            return new Promise((resolve, reject) => {
+                axios.get(option.url)
+                    .then(function (rs) {
+                        //callback成功呼叫resolve;
+                        resolve(rs);
+                        //不成功callback成功呼叫reject;
+                        reject("failure reason");
+                    });
+            });
+        }
+
+        //启动第1个异步任务
+        var p1 = getAjaxPromise({
+            url: 'https://reqres.in/api/users?page=1'
+        });
+
+        p1.then((data1) => {
+            /* 处理第1个异步任务的结果 */
+            console.log(data1);
+            let first_name = data1.data.data[0].first_name;
+            /* 然后启动第2个异步任务 */
+            return getAjaxPromise({
+                url: 'https://reqres.in/api/users?page=2'
+            });
+
+        }).then((data2) => {
+            /* 处理第2个异步任务的结果 */
+            console.log(data2);
+        });
+
     </script>
 </body>
 
