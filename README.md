@@ -60,3 +60,6 @@
 
 ## Javascript基礎觀
 - [觀念：callback fn 取得ajax不同步資料](https://jmihuang.github.io/VUE-studyNote/ajax.promise.html)
+
+## Prop
+- [上層傳來的Prop](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.html)
