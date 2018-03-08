@@ -63,3 +63,4 @@
 
 ## Prop
 - [上層傳來的Prop](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.html)
+- [動態綁定Prop](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.bind.html)
