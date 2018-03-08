@@ -17,11 +17,15 @@
 
 <body>
     <div id="app">
-
-
-        <!-- 更簡潔的寫法 -->
-        <post v-for="post in posts" v-bind="post">
+        <post v-for="post in posts" :author="post.author" :pusblised="post.pusblised" :book="post.book">
         </post>
+
+        <!-- 更簡潔的寫法 
+        <post v-for="post in posts" v-bind="post">
+        </post>-->
+
+        <!-- 運用:number 讓值變成數值 -->
+        <counter :number="1"></counter>
     </div>
     <script>    
         //componet 動態綁定data動態資料
@@ -48,6 +52,10 @@
                         `
                 <p>書名：{{book}} 作者：{{author}}  出版日期：{{pusblised}}  </p>
                 `
+                },
+                counter: {
+                    props: ['number'],
+                    template: '<div>{{number+1}}</div>'
                 }
 
             }
