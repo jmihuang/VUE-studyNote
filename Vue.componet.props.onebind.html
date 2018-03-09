@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <h1>{{counter}}</h1>
+        <button @click="counter+=1">+</button>
+        <counter :aa="counter"></counter>
+    </div>
+    <script>    
+        //componet 單向資料綁定 compoents自訂data與原有的data資料分流，互不影響
+
+        new Vue({
+            el: "#app",
+            data: {
+                counter: 10
+            },
+            components: {
+                counter: {
+                    props: ['aa'],
+                    data() {
+                        return {
+                            counter: this.aa
+                        }
+                    },
+                    template: `
+                    <div>
+                        <h1>{{counter}}</h1>
+                        <button @click="counter+=1">+</button>
+                        </div>
+                    `
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
