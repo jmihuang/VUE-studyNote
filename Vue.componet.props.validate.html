@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <counter :start="11"></counter>
+    </div>
+    <script>    
+        //componet props驗證 在mounted生成之前做props屬性驗證，如果不符合設定就會噴錯 
+        //錯誤會出現在console但務必使用vue.js不壓縮版 
+        Vue.component('counter', {
+            //方法一：直接加屬性
+            //props: {
+            //'start': Number //不是數字格式就會噴錯
+
+            //方法二
+            props: {
+                'start': {
+                    type: Number,
+                    default: 0,
+                    validator(value) {
+                        return value <= 10
+                    }
+                }
+            },
+            data() {
+                return {
+                    counter: this.start
+                }
+            },
+            template: `
+                <div>
+                    <h1>{{counter}}</h1>
+                    <button @click="counter+=1">+</button>
+                </div>
+            `
+        });
+
+        new Vue({
+            el: "#app"
+        });
+    </script>
+</body>
+
+</html>
