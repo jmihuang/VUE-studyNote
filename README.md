@@ -69,4 +69,5 @@
 
 ## 自訂事件
 - [component v-on綁定自訂事件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.emit.html)
+- [component 組件綁定原生事件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.native.html)
 
