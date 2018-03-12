@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <my-counter :counter="outCounter" @update="updateSync"></my-counter>
+        <!-- ：動態取得data資料 傳入componet使用 -->
+        {{outCounter}}
+    </div>
+    <script>  
+        Vue.component('my-counter', {
+            data() {
+                return {
+                    innerCounter: this.counter//:counter="outCounter" 用props"counter"帶入原生data資料
+                }
+            },
+            props: ['counter'],
+            template: `
+            <div>
+                <span>{{innerCounter}}</span>
+                <button @click="innerCounter+=1">count</button>
+                <button @click="sync">sync</button>
+            </div>
+            `,
+            methods: {
+                sync() {
+                    this.$emit('update', this.innerCounter);//發出@@update,觸發updateSync()
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+                outCounter: 100
+            },
+            methods: {
+                updateSync(num) {
+                    this.outCounter = num;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

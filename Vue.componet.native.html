@@ -12,39 +12,17 @@
 
 <body>
     <div id="app">
-        <myclick @call-today="today"></myclick>
-        <counter @copynum="copy"></counter>
-        <span>{{counter}}</span>
+        <!-- 如果要用組件呼叫原生的function 必需加上naive修字符觸發 
+        @click.native
+        @load.native
+        @change.native
+        ..ext
+        -->
+        <myclick @click.native="clickIt"></myclick>
     </div>
-    <script>    
-        //componet 利用＄emit 傳入特定fn與參數 
+    <script>  
         Vue.component('myclick', {
-            template: `<button @click="myClick">click</button>`,
-            methods: {
-                myClick() {
-                    this.$emit('call-today', '2018 / 3 / 11');//發出component本身的call-today的today fn
-                }
-            }
-        });
-
-        Vue.component('counter', {
-            data() {
-                return {
-                    counter: 0
-                }
-            },
-            template: `
-                <div>
-                    <b>{{counter}}</b>
-                    <button @click="counter+=1">+1</button>
-                    <button @click="emit">copy</button>
-                </div>
-            `,
-            methods: {
-                emit() {
-                    this.$emit('copynum', this.counter);//發出component本身的copynum的copy fn
-                }
-            }
+            template: `<button>click</button>`,
         });
 
         new Vue({
@@ -53,11 +31,8 @@
                 counter: 0
             },
             methods: {
-                today(date) {
-                    alert(date);
-                },
-                copy(num) {
-                    this.counter = num;
+                clickIt() {
+                    alert('click');
                 }
             }
         });
