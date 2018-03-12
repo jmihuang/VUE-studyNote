@@ -64,3 +64,9 @@
 ## Prop
 - [上層傳來的Prop](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.html)
 - [動態綁定Prop](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.bind.html)
+- [單向數據流](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.onebind.html)
+- [Prop驗證](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.validate.html)
+
+## 自訂事件
+- [component v-on綁定自訂事件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.emit.html)
+

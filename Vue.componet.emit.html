@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <myclick @call-today="today"></myclick>
+        <counter @copynum="copy"></counter>
+        <span>{{counter}}</span>
+    </div>
+    <script>    
+        //componet 利用＄emit 傳入特定fn與參數 
+        Vue.component('myclick', {
+            template: `<button @click="myClick">click</button>`,
+            methods: {
+                myClick() {
+                    this.$emit('call-today', '2018 / 3 / 11');//發出component本身的call-today的todayfn
+                }
+            }
+        });
+
+        Vue.component('counter', {
+            data() {
+                return {
+                    counter: 0
+                }
+            },
+            template: `
+                <div>
+                    <b>{{counter}}</b>
+                    <button @click="counter+=1">+1</button>
+                    <button @click="emit">copy</button>
+                </div>
+            `,
+            methods: {
+                emit() {
+                    this.$emit('copynum', this.counter);
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+                counter: 0
+            },
+            methods: {
+                today(date) {
+                    alert(date);
+                },
+                copy(num) {
+                    this.counter = num;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
