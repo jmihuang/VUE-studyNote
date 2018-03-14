@@ -68,7 +68,10 @@
 - [Prop驗證](https://jmihuang.github.io/VUE-studyNote/Vue.componet.props.validate.html)
 
 ## 自訂事件
+### 上(data)下(component)溝通 上傳入props給下 下發出$emit給上
 - [component v-on綁定自訂事件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.emit.html)
 - [component 組件綁定原生事件](https://jmihuang.github.io/VUE-studyNote/Vue.componet.native.html)
 - [component 組件sync修飾符](https://jmihuang.github.io/VUE-studyNote/Vue.componet.sync.html)
+- [component 組件v-model等同sync](https://jmihuang.github.io/VUE-studyNote/Vue.componet.model.html)
+- [component 跨組件的溝通](https://jmihuang.github.io/VUE-studyNote/Vue.componet.across.html)
 

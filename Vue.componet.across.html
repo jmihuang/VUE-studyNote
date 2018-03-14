@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+</head>
+
+
+<body>
+    <div id="app">
+        <counter :number="number"></counter>
+        <btn @click.native="number+=1"></btn>
+
+        <bus-counter></bus-counter>
+        <bus-btn></bus-btn>
+    </div>
+    <script>  
+        const bus = new Vue();
+        // 方法一：控制上層的data去完成平行組件的互動
+        Vue.component('counter', {
+            props: ['number'],
+            template: `
+             <h1>{{number}}</h1>
+            `
+        });
+
+        Vue.component('btn', {
+            template: `
+             <button>+1</button>
+            `
+        });
+
+        // 方法二：Vuex 組件state統一管理
+        // 方法三：Event bus 組件的事件溝通
+        Vue.component('busCounter', {
+            data() {
+                return {
+                    number: 0
+                }
+            },
+            mounted() {
+                bus.$on('add', () => {
+                    this.number += 1
+                });
+            },
+            template: `
+             <h1>{{number}}</h1>
+            `
+        });
+
+        Vue.component('busBtn', {
+            template: `
+             <button @click="click">+1</button>
+            `,
+            methods: {
+                click() {
+                    bus.$emit('add');
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+                number: 100
+            }
+        });
+
+    </script>
+</body>
+
+</html>

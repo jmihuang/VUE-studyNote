@@ -12,21 +12,24 @@
 
 <body>
     <div id="app">
-        <my-counter :counter.sync="out-counter"></my-counter>
-        <!-- ：動態取得data資料 傳入componet使用 -
-         :counter.sync="out-counter"等同於 
-          <my-counter :counter="out-counter" @update:outer-count="val => outerCount = val"></my-counter>        
+        <!-- 
+        1. 將值:value動態綁定data outCounter
+        2. 利用props['value'] //將上層的outCounter值帶入componet this.value
+        3. @input="function" $emit('input',參數) //觸發@input的function 並帶入參數值 
         -->
+        <my-counter v-model="outCounter"></my-counter>
+        <!-- 等同於下面的寫法
+        <my-counter :value="outCounter" @input="val => outCounter = val"></my-counter> -->
         {{outCounter}}
     </div>
     <script>  
         Vue.component('my-counter', {
             data() {
                 return {
-                    innerCounter: this.counter//:counter="outCounter" 用props"counter"帶入原生data資料
+                    innerCounter: this.value //:counter="outCounter" 用props"counter"帶入原生data資料
                 }
             },
-            props: ['counter'],
+            props: ['value'],
             template: `
             <div>
                 <span>{{innerCounter}}</span>
@@ -36,7 +39,7 @@
             `,
             methods: {
                 sync() {
-                    this.$emit('update:counter', this.innerCounter);//發出update:counter(props的值) 傳入要被改入this.innerCounter的值
+                    this.$emit('input', this.innerCounter);//發出update:counter(props的值) 傳入要被改入this.innerCounter的值
                 }
             }
         });
