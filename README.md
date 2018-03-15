@@ -74,4 +74,5 @@
 - [component 組件sync修飾符](https://jmihuang.github.io/VUE-studyNote/Vue.componet.sync.html)
 - [component 組件v-model等同sync](https://jmihuang.github.io/VUE-studyNote/Vue.componet.model.html)
 - [component 跨組件的溝通](https://jmihuang.github.io/VUE-studyNote/Vue.componet.across.html)
+- [component 鄉鎮縣市](https://jmihuang.github.io/VUE-studyNote/Vue.componet.county.html)
 

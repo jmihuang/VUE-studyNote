@@ -35,7 +35,7 @@
         });
 
         // 方法二：Vuex 組件state統一管理
-        // 方法三：Event bus 組件的事件溝通
+        // 方法三：componet裡data操作 跨組件可利用Event bus 組件的事件溝通
         Vue.component('busCounter', {
             data() {
                 return {
@@ -43,6 +43,7 @@
                 }
             },
             mounted() {
+                //利用＄on偵聽add event
                 bus.$on('add', () => {
                     this.number += 1
                 });
